@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiciosOnline - Inicio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bd-dark">
+        <div class="container">
+            <!-- Logo y enlace a la página de inicio -->
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="Logo ServiciosOnline" width="70" height="60" class="d-inline-block align-top">
+                ServiciosOnline
+            </a>
+            <!-- Botón de menú colapsable para pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Opciones de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto"> <!-- Alinea los elementos de la lista a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a> <!-- Enlace activo a la página de inicio -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a> <!-- Enlace a la lista de juegos -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MiPerfil.html">Mi perfil</a> <!-- Enlace al perfil del usuario -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Contenido Principal: Página de Inicio de Sesión -->
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5"><!-- Contenedor del formulario de inicio de sesión -->
+      <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+          <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3">Bienvenido a ServiciosOnline</h1>
+          <p class="col-lg-10 fs-4">En este sitio esperamos que los usuarios puedan buscar u ofrecer los servicios que necesitan. Para comenzar, sólo tienes que registrarte.</p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <!-- Formulario de inicio de sesión -->
+          <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Correo Electrónico</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Contraseña</label>
+            </div>
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Recordar mi datos
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar sesión</button>
+            <a href="#" onclick="recoverPassword()">¿Olvidó su contraseña?</a> <!-- Enlace para recuperar contraseña -->
+              <p class="text-center mt-3">¿No posee una cuenta? <a href="registro.html">Regístrese aquí</a></p> <!-- Enlace a registro -->
+            <hr class="my-4">
+            <small class="text-body-secondary">Al dar click en Iniciar sesión, está de acuerdo con los términos de uso.</small>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- Bootstrap para manejo de JavaScript, como la funcionalidad del menú colapsable -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script de autenticación para manejar inicio y cierre de sesión -->
+    <script src="js/auth.js"></script>
+    <!-- Script principal para manejar visibilidad de enlaces según autenticación -->
+    <script src="js/app.js"></script>
+
+    <!-- Script para manejar el envío del formulario de inicio de sesión -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // Evita el envío predeterminado del formulario
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Llama a la función login en auth.js para autenticar al usuario
+            login(username, password);
+        });
+    </script>
+
+    <!-- Validación de campos en blanco en el formulario -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Verifica si los campos están vacíos
+            if (!username || !password) {
+                alert("Por favor, completa todos los campos.");
+                return; // Detiene el proceso de inicio de sesión si hay campos vacíos
+            }
+
+            login(username, password); // Llama a la función de inicio de sesión si los campos están completos
+        });
+    </script>
+
+    <!-- Función para recuperar la contraseña a través del correo electrónico -->
+    <script>
+        function recoverPassword() {
+            const email = prompt("Introduce tu correo electrónico:"); // Solicita el correo del usuario
+            if (!email) return;
+
+            // Obtiene la lista de usuarios desde localStorage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(u => u.email === email); // Busca el usuario que coincida con el correo
+
+            // Si se encuentra el usuario, muestra su contraseña
+            if (user) {
+                alert(`Tu contraseña es: ${user.password}`);
+            } else {
+                alert("No se encontró un usuario con ese correo electrónico."); // Alerta si no encuentra coincidencia
+            }
+        }
+    </script>
+    <footer>
+        <p class="text-center mt-3">Derechos de autor &copy; 2024 ServiciosOnline</p>
+    </footer>
+</body>
+</html>

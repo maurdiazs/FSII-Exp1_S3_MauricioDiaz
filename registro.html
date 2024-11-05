@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiciosOnline - Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bd-dark">
+        <div class="container">
+            <!-- Logo y enlace a la página de inicio -->
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="Logo ServiciosOnline" width="30" height="30" class="d-inline-block align-top">
+                ServiciosOnline
+            </a>
+            <!-- Botón de menú colapsable para pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Opciones de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto"> <!-- Alinea los elementos de la lista a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a> <!-- Enlace activo a la página de inicio -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a> <!-- Enlace a la lista de juegos -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MiPerfil.html">Mi perfil</a> <!-- Enlace al perfil del usuario -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--
+        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+              <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="registerForm">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="nombre de usuario" id="username" required minlength="5" pattern="^[A-Za-z0-9]+$">
+                    <label for="username">Usuario</label>
+                    <div class="invalid-feedback">El nombre de usuario debe tener al menos 5 caracteres y no contener caracteres especiales.</div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="email" class="form-control" placeholder="name@example.com" id="email" required>
+                    <label for="email">Correo Electrónico</label>
+                    <div class="invalid-feedback">Por favor, introduce un correo electrónico válido.</div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$">
+                     
+                    <label for="password">Contraseña</label> 
+                    <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres, incluyendo una letra mayúscula, un número y un carácter especial.</div>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="password" class="form-control" placeholder="Password" id="confirmPassword" >
+                    <label for="confirmPassword">Confirmar Contraseña</label>
+                    <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                  </div>
+                  <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Recordar mi datos
+                    </label>
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
+                  <hr class="my-4">
+                  <small class="text-body-secondary">Al dar click en Iniciar sesión, está de acuerdo con los términos de uso.</small>
+                </form>
+              </div>
+            </div>
+          </div>-->
+
+          <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+            <div class="row align-items-center g-lg-5 py-5">
+                <div class="col-md-10 mx-auto col-lg-5">
+                    <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" id="registerForm">
+                        
+                      <!-- Select para seleccionar el perfil -->
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="profile" onchange="showProfileFields(this.value)" required>
+                        <option value="">Selecciona tu perfil</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">Usuario</option>
+                        <option value="supplier">Proveedor</option>
+                    </select>
+                    <label for="profile">Perfil</label>
+                </div>
+        
+                        <!-- Campos comunes -->
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" placeholder="nombre de usuario" id="username" required minlength="5" pattern="^[A-Za-z0-9]+$">
+                            <label for="username">Usuario</label>
+                            <div class="invalid-feedback">El nombre de usuario debe tener al menos 5 caracteres y no contener caracteres especiales.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" placeholder="name@example.com" id="email" required>
+                            <label for="email">Correo Electrónico</label>
+                            <div class="invalid-feedback">Por favor, introduce un correo electrónico válido.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="Password" id="password" required pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$">
+                            <label for="password">Contraseña</label> 
+                            <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres, incluyendo una letra mayúscula, un número y un carácter especial.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" placeholder="Password" id="confirmPassword">
+                            <label for="confirmPassword">Confirmar Contraseña</label>
+                            <div class="invalid-feedback">Las contraseñas no coinciden.</div>
+                        </div>
+        
+                        <!-- Sección específica para Admin -->
+                        <div id="adminFields" class="profile-section" style="display: none;">
+                            <h6>Información adicional para Admin</h6>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" placeholder="Rol de administrador" id="adminRole">
+                                <label for="adminRole">Rol de Administrador</label>
+                            </div>
+                        </div>
+        
+                        <!-- Sección específica para Usuario -->
+                        <div id="userFields" class="profile-section" style="display: none;">
+                            <h6>Información adicional para Usuario</h6>
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" placeholder="Número de teléfono" id="userPhone">
+                                <label for="userPhone">Teléfono</label>
+                            </div>
+                        </div>
+        
+                        <!-- Sección específica para Proveedor -->
+                        <div id="suplierFields" class="profile-section" style="display: none;">
+                            <h6>Información adicional para Proveedor</h6>
+                            <div class="form-floating mb-3">
+                                <input type="tel" class="form-control" placeholder="Número de teléfono" id="userPhone">
+                                <label for="userPhone">Teléfono</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <textarea class="form-control" placeholder="Detalles" id="suplierComments"></textarea>
+                                <label for="suplierComments">Detalles del servicio</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select class="form-select" id="service" >
+                                    <option value="">Servicio prestado</option>
+                                    <option value="admin">Jardinería</option>
+                                    <option value="limpiezahogar">Limpieza de hogar</option>
+                                    <option value="electricidad">Electricidad</option>
+                                    <option value="plomeria">Plomería</option>
+                                    <option value="pinturainteriores">Pintura de interiores</option>
+                                    <option value="fumigacion">Fumigación</option>
+                                    <option value="mudanza">Mudanza</option>
+                                    <option value="limpiezaalfombras">Limpieza de alfombras</option>
+                                    <option value="reparacionelectr">Reparación de electrodomésticos</option>
+                                    <option value="cerrajeria">Cerrajería</option>
+                                </select>
+                                <label for="profile">Perfil</label>
+                            </div>
+                        </div>
+        
+                        <!-- Checkbox y botón de enviar -->
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me"> Recordar mis datos
+                            </label>
+                        </div>
+                        <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarse</button>
+                        <hr class="my-4">
+                        <small class="text-body-secondary">Al dar click en Iniciar sesión, está de acuerdo con los términos de uso.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        
+    
+
+      <!-- Scripts -->
+    <script src="js/auth.js"></script> <!-- Script de autenticación para manejar el registro de usuario -->
+
+     <!-- Script para manejar las opciones a completar el formulario dependiendo del perfil seleccionado -->
+    <script>
+        function showProfileFields(profile) {
+            // Ocultar todas las secciones específicas
+            document.getElementById('adminFields').style.display = 'none';
+            document.getElementById('userFields').style.display = 'none';
+            document.getElementById('suplierFields').style.display = 'none';
+    
+            // Mostrar la sección correspondiente según el perfil seleccionado
+            if (profile === 'admin') {
+                document.getElementById('adminFields').style.display = 'block';
+            } else if (profile === 'user') {
+                document.getElementById('userFields').style.display = 'block';
+            } else if (profile === 'supplier') {
+                document.getElementById('suplierFields').style.display = 'block';
+            }
+        }
+    </script>
+
+     <!-- Script para manejar la validación y registro del usuario -->
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function (e) {
+            console.log('Funcionando')
+            e.preventDefault(); // Evita el envío predeterminado del formulario
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;          
+
+            // Validación de confirmación de contraseña
+            if (password !== confirmPassword) {
+                document.getElementById("confirmPassword").classList.add("is-invalid");
+                return;
+            }
+
+            // Validar el formulario usando Bootstrap
+            const form = e.target;
+            if (!form.checkValidity()) {
+                form.classList.add("was-validated"); // Aplica estilos de validación de Bootstrap
+                return;
+            }
+
+            // Llama a la función `registerUser` en `auth.js` para registrar al usuario
+            registerUser({ username, email, password });
+            alert("Registro exitoso. Ahora puede iniciar sesión.");
+            window.location.href = "index.html"; // Redirige a la página de inicio de sesión tras el registro
+        });
+    </script>
+
+    <!-- Validación de campos en blanco en el formulario -->
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Verifica si los campos están vacíos
+            if (!username || !password) {
+                alert("Por favor, completa todos los campos.");
+                return; // Detiene el proceso de inicio de sesión si hay campos vacíos
+            }
+
+            login(username, password); // Llama a la función de inicio de sesión si los campos están completos
+        });
+    </script>
+</body>
+</html>

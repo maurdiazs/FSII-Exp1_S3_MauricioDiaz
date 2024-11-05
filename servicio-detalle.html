@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres para soportar caracteres especiales -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura el diseño responsivo para dispositivos móviles -->
+    <title>ServiciosOnline - Detalle del Servicio</title> <!-- Título de la página -->
+
+    <!-- Bootstrap para estilos predefinidos y diseño responsivo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Archivo de estilos personalizados -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> <!-- Navbar oscuro y expansible en pantallas grandes -->
+        <div class="container">
+            <!-- Logo y enlace a la página de inicio -->
+            <a class="navbar-brand" href="index.html">
+                <img src="img/logo.png" alt="Logo ServiciosOnline" width="30" height="30" class="d-inline-block align-top">
+                ServiciosOnline
+            </a>
+            <!-- Botón de menú para pantallas pequeñas -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Opciones de navegación -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto"> <!-- Alinea los elementos de la lista a la derecha -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Inicio</a> <!-- Enlace activo a la página de inicio -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a> <!-- Enlace a la lista de juegos -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MiPerfil.html">Mi perfil</a> <!-- Enlace al perfil del usuario -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="logout()">Cerrar Sesión</a> <!-- Enlace para cerrar sesión -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal: Detalle del Servicio -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Columna para la imagen del servicio -->
+            <div class="col-md-6">
+                <img id="servicioImage" src="" alt="Imagen del servicio" class="img-fluid"> <!-- Imagen del servicio (cargada dinámicamente) -->
+            </div>
+            <!-- Columna para la información del servicio -->
+            <div class="col-md-6">
+                <h2 id="servicioTitle"></h2> <!-- Título del servicio (cargado dinámicamente) -->
+                <p id="servicioDescription"></p> <!-- Descripción del servicio (cargada dinámicamente) -->
+                <p id="servicioPrice"></p> <!-- Precio del servicio (cargado dinámicamente) -->
+                <p id="servicioDiscountPrice"></p> <!-- Precio con descuento si aplica (cargado dinámicamente) -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/serviciosData.js"></script> <!-- Carga la lista de servicios disponible -->
+    <script src="js/auth.js"></script> <!-- Carga el script de autenticación -->
+    <script src="js/servicioDetail.js"></script> <!-- Carga el script que gestiona el detalle del servicio -->
+</body>
+</html>
